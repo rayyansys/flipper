@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+class AddDescriptionToFlipperFeatures < ActiveRecord::Migration<%= migration_version %>
+    def up
+      # Ensure this incremental update migration is idempotent
+      return unless connection.column_exists? :flipper_features, :description, :text
+  
+      add_column :flipper_features, :description, :text
+    end
+  
+    def down
+      remove_column :flipper_gates, :description, :text
+    end
+  end
+  
